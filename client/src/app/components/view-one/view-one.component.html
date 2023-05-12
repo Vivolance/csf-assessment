@@ -1,0 +1,53 @@
+<h2>View One</h2>
+
+<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+
+  <table>
+    <tr>
+      <td>
+        <label for="nameInput">Name:</label>
+      </td>
+      <td>
+        <input id="nameInput" type="text" formControlName="name" placeholder="Enter name" required>
+        <div *ngIf="isFormControlInvalid('name') && form.controls['name'].touched" class="error-message">
+          Name is required.
+        </div>
+      </td>
+    </tr>
+  
+    <tr>
+      <td>
+        <label for="titleInput">Title:</label>
+      </td>
+      <td>
+        <input id="titleInput" type="text" formControlName="title" placeholder="Enter title" required>
+        <div *ngIf="isFormControlInvalid('title') && form.controls['title'].touched" class="error-message">
+          Title is required.
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="commentsInput">Comments:</label>
+      </td>
+      <td>
+        <textarea id="commentsInput" formControlName="comments" placeholder="Enter comments"></textarea>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="archiveInput">Archive:</label>
+      </td>
+      <td>
+        <input id="archiveInput" type="file" (change)="handleFileInput($event)" required>
+        <div *ngIf="isFormControlInvalid('archive') && form.controls['archive'].touched" class="error-message">
+          Archive file is required.
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <button type="submit" [disabled]="!form.valid">Submit</button>
+</form>
